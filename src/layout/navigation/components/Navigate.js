@@ -20,10 +20,7 @@ export class Navigate extends Component {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <a href="/widgets" className="nav-item nav-link" href="#">
-              <span className="nav-item nav-link">Widgets</span>
-            </a>
-            <a href="/" className="nav-item nav-link disabled" href="#">
+            <a href="/" className="nav-item nav-link">
               <span className="nav-item nav-link">TODO</span>
             </a>
           </div>
