@@ -113,12 +113,7 @@ class TodoItem extends Component {
               className="form-inline alert alert-primary"
             >
               <div className="form-group mb-2">
-                <input
-                  type="text"
-                  value={this.state.item.id}
-                  name="id"
-                  onChange={this.updateFormAttributes.bind(this)}
-                />
+                <input type="hidden" value={this.state.item.id} name="id" />
                 <input
                   type="text"
                   className="form-control"
