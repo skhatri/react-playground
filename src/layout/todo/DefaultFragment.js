@@ -1,44 +1,33 @@
 import React, { Component } from "react";
 import TodoList from "./components/TodoList";
 import AddItem from "./components/AddItem";
+import TodoClient from "./api/todo_api";
 
 export class DefaultFragment extends Component {
+  constructor() {
+    super();
+    this.todoClient = new TodoClient();
+  }
+
   componentWillMount() {
-    this.setState({
-      todoList: [
-        {
-          id: "1",
-          description: "List Todo",
-          action_by: "user1",
-          created: "2020-03-20T00:00:00",
-          status: "DONE",
-          updated: null,
-        },
-        {
-          id: "2",
-          description: "Edit Todo",
-          action_by: "user1",
-          created: "2020-03-20T13:00:00",
-          status: "DONE",
-          updated: "2020-03-20T13:00:00",
-        },
-        {
-          id: "3",
-          description: "Add Router",
-          action_by: "user1",
-          created: "2020-03-20T13:00:00",
-          status: "NEW",
-          updated: "2020-03-20T13:00:00",
-        },
-        {
-          id: "4",
-          description: "Add Nth Fibonacci",
-          action_by: "user1",
-          created: "2020-03-20T13:00:00",
-          status: "NEW",
-          updated: "2020-03-20T13:00:00",
-        },
-      ],
+    this.setState({ todoList: [] });
+    this.refreshItems();
+  }
+
+  refreshOnComplete = (data, err) => {
+    if (err !== undefined) {
+      console.log("error", err);
+    }
+    this.refreshItems();
+  };
+
+  refreshItems() {
+    this.todoClient.listItems((data, err) => {
+      if (err !== undefined) {
+        console.log("error", err);
+      } else {
+        this.setState({ todoList: data });
+      }
     });
   }
 
@@ -46,17 +35,9 @@ export class DefaultFragment extends Component {
     let item = data.item;
     console.log(action, item);
     if (action === "add") {
-      item.id = String(new Date().getTime());
-      this.setState({ todoList: [...this.state.todoList, item] });
+      this.todoClient.addItem(item, this.refreshOnComplete);
     } else {
-      this.setState({
-        todoList: this.state.todoList.map((currItem) => {
-          if (currItem.id === item.id) {
-            return item;
-          }
-          return currItem;
-        }),
-      });
+      this.todoClient.updateItem(item, this.refreshOnComplete);
     }
   }
 
@@ -72,9 +53,7 @@ export class DefaultFragment extends Component {
   }
 
   onDeleteItem(itemId) {
-    this.setState({
-      todoList: this.state.todoList.filter((item) => item.id !== itemId),
-    });
+    this.todoClient.deleteItem(itemId, this.refreshOnComplete);
   }
 
   render() {
