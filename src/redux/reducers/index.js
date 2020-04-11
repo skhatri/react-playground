@@ -1,4 +1,7 @@
 import { combineReducers } from "redux";
 import { counterReducer } from "./counter_reducers";
-
-export const rootReducer = combineReducers({ counter: counterReducer });
+import { fibnacciReducer } from "./fibonacci_reducers";
+export const rootReducer = combineReducers({
+  counter: counterReducer,
+  fibonacci: fibnacciReducer,
+});

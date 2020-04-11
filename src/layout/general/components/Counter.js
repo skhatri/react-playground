@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { increment, decrement } from "../../../actions/counter_creators";
+import { increment, decrement } from "../../../redux/actions/counter_creators";
 import PropTypes from "prop-types";
 
 export class Counter extends Component {
@@ -40,7 +40,9 @@ export class Counter extends Component {
             </button>
           </div>
           <p />
-          <p class="alert alert-warning">Props: {JSON.stringify(this.props)}</p>
+          <p className="alert alert-warning">
+            Props: {JSON.stringify(this.props)}
+          </p>
         </div>
       </div>
     );

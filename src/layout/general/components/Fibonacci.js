@@ -1,41 +1,23 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import {
+  nthFibonacci,
+  updateFibInput,
+} from "../../../redux/actions/fibonacci_creators";
+import PropTypes from "prop-types";
 
 export class Fibonacci extends Component {
-  constructor() {
-    super();
-    this.state = { num: 0, _m: {}, result: 0 };
+  updateNum(ev) {
+    this.props.updateFibInput(ev.target.value);
   }
-
-  _fib(c) {
-    if (this.state._m[c]) {
-      return this.state._m[c];
-    }
-    let items = new Array(c + 1);
-    for (var i = 0; i <= c; i++) {
-      if (i == 0) {
-        items[i] = 0;
-      } else if (i == 1 || i == 2) {
-        items[i] = 1;
-      } else {
-        items[i] = items[i - 2] + items[i - 1];
-      }
-      let _m = this.state._m;
-      _m[i] = items[i];
-    }
-    console.log(items);
-    return items[c];
+  findNthFibonacci() {
+    this.props.nthFibonacci(this.props.num);
   }
-
-  fibo() {
-    let currentNumber = this.state.num;
-    let result = this._fib(currentNumber);
-    this.updateFieldAttribute({ target: { name: "result", value: result } });
-  }
-
-  updateFieldAttribute(v) {
-    this.setState({
-      [v.target.name]: v.target.value,
-    });
+  getStyle() {
+    console.log("how often");
+    return this.props.cache_hit === "yes"
+      ? "badge badge-success"
+      : "badge badge-danger";
   }
 
   render() {
@@ -50,16 +32,16 @@ export class Fibonacci extends Component {
             <input
               type="text"
               className="form-control mb-2 col-md-4"
-              value={this.state.num}
+              value={this.props.num}
               name="num"
-              onChange={this.updateFieldAttribute.bind(this)}
+              onChange={this.updateNum.bind(this)}
               placeholder="Nth-Fibonacci"
             />
             &nbsp;
             <button
               type="button"
               className="btn btn-primary mb-2"
-              onClick={this.fibo.bind(this)}
+              onClick={this.findNthFibonacci.bind(this)}
             >
               Calculate
             </button>
@@ -68,11 +50,15 @@ export class Fibonacci extends Component {
           <div className="alert alert-primary" role="alert">
             <p>
               Input:
-              <span className="badge badge-success">{this.state.num}</span>
+              <span className="badge badge-success">{this.props.num}</span>
             </p>
             <p>
-              Fibonacci:
-              <span className="badge badge-primary">{this.state.result}</span>
+              Result:{" "}
+              <span className="badge badge-primary">{this.props.result}</span>
+            </p>
+            <p>
+              Cache Hit:{" "}
+              <span className={this.getStyle()}>{this.props.cache_hit}</span>
             </p>
           </div>
         </div>
@@ -85,4 +71,21 @@ const cardStyle = {
   minHeight: "22rem",
 };
 
-export default Fibonacci;
+const mapStateToProps = (state) => {
+  console.log("state for map props", state);
+  return {
+    num: state.fibonacci.num,
+
+    cache_hit: state.fibonacci.cache_hit,
+    result: state.fibonacci.result,
+  };
+};
+
+Fibonacci.propTypes = {
+  nthFibonacci: PropTypes.func.isRequired,
+  updateFibInput: PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps, { nthFibonacci, updateFibInput })(
+  Fibonacci
+);
