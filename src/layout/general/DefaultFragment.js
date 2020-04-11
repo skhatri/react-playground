@@ -12,7 +12,7 @@ export class DefaultFragment extends Component {
             <Fibonacci title="Fibonacci" />
           </div>
           <div className="col-sm-4">
-            <Counter title="Counter" data="Counter Values" count="2" />
+            <Counter title="Counter" />
           </div>
         </div>
       </div>

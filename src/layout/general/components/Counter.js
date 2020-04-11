@@ -1,17 +1,15 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { increment, decrement } from "../../../actions/counter_creators";
+import PropTypes from "prop-types";
 
 export class Counter extends Component {
-  constructor() {
-    super();
-    this.state = {
-      count: 0,
-      doubled: 0,
-    };
-  }
-
   change(value) {
-    let count = this.state.count + value;
-    this.setState({ count: count, doubled: count * 2 });
+    if (value === 1) {
+      this.props.increment();
+    } else {
+      this.props.decrement();
+    }
   }
 
   render() {
@@ -19,8 +17,8 @@ export class Counter extends Component {
       <div className="card border-primary" style={cardStyle}>
         <div className="card-header">{this.props.title}</div>
         <div className="card-body">
-          <h3>Count: {this.state.count}</h3>
-          <h3>Double: {this.state.doubled}</h3>
+          <h3>Count: {this.props.count}</h3>
+          <h3>Double: {this.props.doubled}</h3>
           <div className="btn-group">
             <button
               className="btn btn-warning"
@@ -32,7 +30,7 @@ export class Counter extends Component {
               className="font-weight-bold md-2 col-sm-4 border-primary"
               style={wide}
             >
-              {this.state.count}
+              {this.props.count}
             </span>
             <button
               className="btn btn-success"
@@ -41,8 +39,8 @@ export class Counter extends Component {
               +
             </button>
           </div>
-
-          <p>Counter card</p>
+          <p />
+          <p class="alert alert-warning">Props: {JSON.stringify(this.props)}</p>
         </div>
       </div>
     );
@@ -50,11 +48,24 @@ export class Counter extends Component {
 }
 
 const cardStyle = {
-  minHeight: "19rem",
+  minHeight: "22rem",
 };
 
 const wide = {
   minWidth: "5rem",
 };
 
-export default Counter;
+Counter.propTypes = {
+  increment: PropTypes.func.isRequired,
+  decrement: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  console.log("state for map props", state);
+  return {
+    count: state.counter.count,
+    doubled: state.counter.doubled,
+  };
+};
+
+export default connect(mapStateToProps, { increment, decrement })(Counter);
