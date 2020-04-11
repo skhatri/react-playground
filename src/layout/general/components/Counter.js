@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { increment, decrement } from "../../../redux/actions/counter_creators";
+import { increment, decrement } from "../actions/counter_creators";
 import PropTypes from "prop-types";
 
 export class Counter extends Component {

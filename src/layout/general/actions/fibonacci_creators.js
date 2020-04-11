@@ -1,4 +1,4 @@
-import fibonacciService from "../../service/fibonacci";
+import fibonacciService from "../services/fibonacci";
 
 export function nthFibonacci(num) {
   console.log("received ", num);

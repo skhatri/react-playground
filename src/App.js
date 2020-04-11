@@ -5,7 +5,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { DefaultFragment as DefaultTodoLayout } from "./layout/todo/DefaultFragment";
 import { DefaultFragment as GeneralLayout } from "./layout/general/DefaultFragment";
 
-import store from "./redux/stores";
+import store from "./app/stores";
 import { Provider } from "react-redux";
 
 class App extends React.Component {

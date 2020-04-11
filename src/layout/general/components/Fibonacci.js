@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-  nthFibonacci,
-  updateFibInput,
-} from "../../../redux/actions/fibonacci_creators";
+import { nthFibonacci, updateFibInput } from "../actions/fibonacci_creators";
 import PropTypes from "prop-types";
 
 export class Fibonacci extends Component {
@@ -14,7 +11,6 @@ export class Fibonacci extends Component {
     this.props.nthFibonacci(this.props.num);
   }
   getStyle() {
-    console.log("how often");
     return this.props.cache_hit === "yes"
       ? "badge badge-success"
       : "badge badge-danger";
