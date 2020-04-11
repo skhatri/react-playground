@@ -46,10 +46,7 @@ export class Fibonacci extends Component {
         </div>
 
         <div className="card-body">
-          <form
-            className="form form-inline navbar-form pull-left"
-            onsubmit="return false;"
-          >
+          <form className="form form-inline navbar-form pull-left">
             <input
               type="text"
               className="form-control mb-2 col-md-4"
@@ -85,7 +82,7 @@ export class Fibonacci extends Component {
 }
 
 const cardStyle = {
-  minHeight: "19rem",
+  minHeight: "22rem",
 };
 
 export default Fibonacci;
