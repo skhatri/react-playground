@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Fibonacci from "./components/Fibonacci";
 import Counter from "./components/Counter";
+import { StateRenderer } from "./components/StateRenderer";
 
 export class DefaultFragment extends Component {
   render() {
@@ -13,6 +14,9 @@ export class DefaultFragment extends Component {
           </div>
           <div className="col-sm-4">
             <Counter title="Counter" />
+          </div>
+          <div className="col-sm-4">
+            <StateRenderer title="Global State Renderer" />
           </div>
         </div>
       </div>
