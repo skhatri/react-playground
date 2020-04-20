@@ -1,6 +1,8 @@
+const base = "http://localhost:8100"
+
 class TodoClient {
   async listItems(cb) {
-    fetch("http://localhost:8080/todo/search")
+    fetch(`${base}/todo/search`)
       .then((res) => res.json())
       .then((responseData) => responseData.data)
       .then((data) => {
@@ -17,7 +19,7 @@ class TodoClient {
 
   async addItem(item, cb) {
     item.id = "";
-    fetch("http://localhost:8080/todo/", {
+    fetch(`${base}/todo/`, {
       method: "POST",
       body: JSON.stringify(item),
       headers: {
@@ -38,7 +40,7 @@ class TodoClient {
   }
 
   async updateItem(item, cb) {
-    fetch(`http://localhost:8080/todo/${item.id}`, {
+    fetch(`${base}/todo/${item.id}`, {
       method: "POST",
       body: JSON.stringify(item),
       headers: {
@@ -59,7 +61,7 @@ class TodoClient {
   }
 
   async deleteItem(itemId, cb) {
-    fetch(`http://localhost:8080/todo/${itemId}`, {
+    fetch(`${base}/todo/${itemId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

@@ -21,13 +21,28 @@ export class Navigate extends Component {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
+
             <Link to="/" className="nav-item nav-link">
               <span className="nav-item nav-link">TODO</span>
             </Link>
             <Link to="/widgets" className="nav-item nav-link">
-              <span className="nav-item nav-link">Widgets</span>
+              <span className="nav-item nav-link">Calculator</span>
             </Link>
+
+              <Link to="/changepw" className="nav-item nav-link">
+                  <span className="nav-item nav-link">Change Password</span>
+              </Link>
+              <Link to="/forgotpw" className="nav-item nav-link">
+                  <span className="nav-item nav-link">Forgot Password</span>
+              </Link>
+              <Link to="/register" className="nav-item nav-link">
+                  <span className="nav-item nav-link">Register</span>
+              </Link>
+              <Link to="/signin" className="nav-item nav-link">
+                  <span className="nav-item nav-link">Sign In</span>
+              </Link>
           </div>
+
         </div>
       </nav>
     );
