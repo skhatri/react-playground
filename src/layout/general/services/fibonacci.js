@@ -11,7 +11,7 @@ class FibonacciService {
     for (var i = 0; i <= n; i++) {
       if (i == 0) {
         items[i] = 0;
-      } else if (i == 1 || i == 2) {
+      } else if (i === 1 || i === 2) {
         items[i] = 1;
       } else {
         items[i] = items[i - 2] + items[i - 1];

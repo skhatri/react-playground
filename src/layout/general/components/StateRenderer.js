@@ -11,10 +11,15 @@ const stateMapper = function (instance) {
 export class StateRenderer extends Component {
   constructor() {
     super();
-    stateMapper(this);
+    this.unsubscribe = stateMapper(this);
   }
   componentWillMount() {
     this.setState({ global: {} });
+  }
+  componentWillUnmount() {
+    if(typeof this.unsubscribe !== "undefined") {
+      this.unsubscribe();
+    }
   }
 
   change(value) {}

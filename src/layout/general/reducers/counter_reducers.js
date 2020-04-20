@@ -15,7 +15,6 @@ export function counterReducer(state = { count: 0 }, action) {
         doubled: decCount * 2,
       });
     default:
-      console.log("Action Type", action.type);
       return state;
   }
 }

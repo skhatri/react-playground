@@ -1,7 +1,6 @@
 const initState = { num: 0, result: 0, cache_hit: false };
 
 export function fibnacciReducer(state = initState, action) {
-  console.log("fibonacci reducer", state, "action", action);
   switch (action.type) {
     case "FIBONACCI":
       console.log("reducer result", action.data);

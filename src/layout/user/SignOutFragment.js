@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import SignIn from "./components/SignIn";
+import SignOut from "./components/SignOut";
 
-export class SignInFragment extends Component {
+export class SignOutFragment extends Component {
+
     render() {
         return (
             <div className="container-fluid w-100">
                 <div>&nbsp;</div>
                 <div className="row w-100">
-
                     <div className="col-sm-4">
-                        <SignIn title="Sign In" />
+                        <SignOut/>
                     </div>
 
                 </div>
@@ -18,4 +18,4 @@ export class SignInFragment extends Component {
     }
 }
 
-export default SignInFragment;
+export default SignOutFragment;

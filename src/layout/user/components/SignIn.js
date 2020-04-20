@@ -1,73 +1,79 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { increment, decrement } from "../actions/signin_creators";
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import {performLogin, updateUsername, updatePassword} from "../actions/signin_creators";
 import PropTypes from "prop-types";
+import {withRouter} from "react-router-dom";
 
 export class SignIn extends Component {
-    change(value) {
-        if (value === 1) {
-            this.props.increment();
-        } else {
-            this.props.decrement();
+    updateEmail(ev) {
+        this.props.updateUsername(ev.target.value)
+    }
+
+    updatePassword(ev) {
+        this.props.updatePassword(ev.target.value)
+    }
+
+    performLogin() {
+        this.props.performLogin(this.props.username, this.props.password)
+    }
+
+    messageStyleName() {
+        if (this.props.error) {
+            return "alert alert-danger";
+        }
+        return "";
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.accessToken !== undefined && this.props.accessToken !== "") {
+            this.props.history.push("/widgets");
         }
     }
 
     render() {
         return (
-            <div className="card border-primary" style={cardStyle}>
-                <div className="card-header">{this.props.title}</div>
-                <div className="card-body">
-                    <h3>Count: {this.props.count}</h3>
-                    <h3>Double: {this.props.doubled}</h3>
-                    <div className="btn-group">
-                        <button
-                            className="btn btn-warning"
-                            onClick={this.change.bind(this, -1)}
-                        >
-                            -
-                        </button>
-                        <span
-                            className="font-weight-bold md-2 col-sm-4 border-primary"
-                            style={wide}
-                        >
-              {this.props.count}
-            </span>
-                        <button
-                            className="btn btn-success"
-                            onClick={this.change.bind(this, 1)}
-                        >
-                            +
-                        </button>
-                    </div>
-                    <p />
-                    <p className="alert alert-warning">
-                        Props: {JSON.stringify(this.props)}
-                    </p>
-                </div>
+            <div>
+                <span className={this.messageStyleName()}>{this.props.message}</span>
+                <form className="form-signin">
+                    <img className="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg"
+                         alt=""
+                         width="72" height="72"/>
+                    <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+                    <label htmlFor="inputEmail" className="sr-only">Email address</label>
+                    <input type="text" id="inputEmail" className="form-control" placeholder="Email address" required=""
+                           autoFocus=""
+                           value={this.props.username}
+                           onChange={this.updateEmail.bind(this)}/>
+                    <label htmlFor="inputPassword" className="sr-only">Password</label>
+                    <input type="password" id="inputPassword" className="form-control" placeholder="Password"
+                           required=""
+                           value={this.props.password}
+                           onChange={this.updatePassword.bind(this)}/>
+                    <button className="btn btn-lg btn-primary btn-block" type="button"
+                            disabled={this.props.password.length < 6}
+                            onClick={this.performLogin.bind(this)}>Sign in
+                    </button>
+                </form>
             </div>
+
         );
     }
 }
 
-const cardStyle = {
-    minHeight: "22rem",
-};
-
-const wide = {
-    minWidth: "5rem",
-};
-
 SignIn.propTypes = {
-    increment: PropTypes.func.isRequired,
-    decrement: PropTypes.func.isRequired,
+    performLogin: PropTypes.func.isRequired,
+    updateUsername: PropTypes.func.isRequired,
+    updatePassword: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
-    console.log("state for map props", state);
     return {
-        count: state.signin.count,
-        doubled: state.signin.doubled,
+        password: state.signin.input.password,
+        username: state.signin.input.username,
+        message: state.signin.output.message,
+        error: state.signin.output.error,
+        accessToken: state.signin.output.accessToken
     };
 };
 
-export default connect(mapStateToProps, { increment, decrement })(SignIn);
+export default connect(mapStateToProps, {performLogin, updateUsername, updatePassword})(withRouter(SignIn));
