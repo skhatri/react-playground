@@ -84,15 +84,15 @@ class SignInService {
                             username: res.uuid,
                             validUntil: res.valid_until
                         }, {
-                            message: "",
-                            error: false,
-                            loggedIn: true
+                                message: "",
+                                error: false,
+                                loggedIn: true
                         }));
                     } else {
                         reject({
-                            message: rej["message"],
-                            error: true,
-                            loggedIn: false
+                                message: rej["message"],
+                                error: true,
+                                loggedIn: false
                         })
                     }
                 });

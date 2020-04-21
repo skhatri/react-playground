@@ -1,9 +1,10 @@
 import signinService from "../services/signin.service";
-
+import {Events} from "../model";
+const {SignIn} = Events;
 
 export function updateUsername(value) {
     return {
-        type: "SIGNIN_USERNAME_INPUT",
+        type: SignIn.UsernameEntered,
         data: {
             username: value,
         },
@@ -12,7 +13,7 @@ export function updateUsername(value) {
 
 export function updatePassword(value) {
     return {
-        type: "SIGNIN_PASSWORD_INPUT",
+        type: SignIn.PasswordEntered,
         data: {
             password: value,
         },
@@ -25,12 +26,12 @@ export function performLogin(username, password) {
         signinService.performLogin(username, password)
             .then(data => {
                 dispatch({
-                    type: "SIGNIN_RESULT_FULLFILLED",
+                    type: SignIn.ResultFullFilled,
                     data: data
                 });
             }).catch(err => {
             dispatch({
-                type: "SIGNIN_RESULT_ERROR",
+                type: SignIn.ResultError,
                 data: err
             });
         })
@@ -40,7 +41,7 @@ export function performLogin(username, password) {
 
 export function performLogout() {
     return {
-        type: "SIGNIN_LOGOUT",
+        type: SignIn.Logout,
         data: {
         },
     };

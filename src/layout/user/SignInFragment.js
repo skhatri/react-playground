@@ -18,5 +18,3 @@ export class SignInFragment extends Component {
         );
     }
 }
-
-export default SignInFragment;

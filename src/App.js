@@ -7,10 +7,11 @@ import { DefaultFragment as DefaultTodoLayout } from "./layout/todo/DefaultFragm
 import { DefaultFragment as GeneralLayout } from "./layout/general/DefaultFragment";
 import { SignInFragment as SignInLayout } from "./layout/user/SignInFragment";
 import { SignOutFragment as SignOutLayout } from "./layout/user/SignOutFragment";
-
+import {ChangePasswordFragment as ChangePasswordLayout} from "./layout/user/ChangePasswordFragment";
 
 import store from "./app/stores";
 import { Provider } from "react-redux";
+
 
 class App extends React.Component {
   render() {
@@ -30,6 +31,9 @@ class App extends React.Component {
             </Route>
             <Route exact path="/signout">
               <SignOutLayout/>
+            </Route>
+            <Route exact path="/changepw">
+              <ChangePasswordLayout/>
             </Route>
           </div>
         </BrowserRouter>

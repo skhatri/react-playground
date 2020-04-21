@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import SignOut from "./components/SignOut";
+import ChangePassword from "./components/ChangePassword";
 
-export class SignOutFragment extends Component {
+export class ChangePasswordFragment extends Component {
 
     render() {
         return (
             <div className="container-fluid w-100">
                 <div>&nbsp;</div>
                 <div className="row w-100">
+
                     <div className="col-sm-4">
-                        <SignOut/>
+                        <ChangePassword title="Change Password" />
                     </div>
 
                 </div>
