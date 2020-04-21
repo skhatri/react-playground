@@ -26,7 +26,7 @@ export class SignIn extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.accessToken !== undefined && this.props.accessToken !== "") {
-            this.props.history.push("/widgets");
+            this.props.history.push("/");
         }
     }
 

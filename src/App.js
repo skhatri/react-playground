@@ -19,16 +19,16 @@ class App extends React.Component {
         <BrowserRouter>
           <div className="container-fluid w-100">
             <Navigate />
-            <Route exact path="/">
+            <Route exact path="/todo">
               <DefaultTodoLayout />
             </Route>
-            <Route path="/widgets">
+            <Route exact path="/">
               <GeneralLayout />
             </Route>
-            <Route path="/signin">
+            <Route exact path="/signin">
               <SignInLayout />
             </Route>
-            <Route path="/signout">
+            <Route exact path="/signout">
               <SignOutLayout/>
             </Route>
           </div>

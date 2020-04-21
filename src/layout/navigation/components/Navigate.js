@@ -6,10 +6,10 @@ export class Navigate extends Component {
 
     loggedInMenu() {
         return (<div className="navbar-nav">
-            <Link to="/" className="nav-item nav-link">
+            <Link to="/todo" className="nav-item nav-link">
                 <span className="nav-item nav-link">TODO</span>
             </Link>
-            <Link to="/widgets" className="nav-item nav-link">
+            <Link to="/" className="nav-item nav-link">
                 <span className="nav-item nav-link">Calculator</span>
             </Link>
 
@@ -25,7 +25,7 @@ export class Navigate extends Component {
 
     notLoggedInMenu() {
         return (<div className="navbar-nav">
-            <Link to="/widgets" className="nav-item nav-link">
+            <Link to="/" className="nav-item nav-link">
                 <span className="nav-item nav-link">Calculator</span>
             </Link>
             <Link to="/register" className="nav-item nav-link">
@@ -38,9 +38,15 @@ export class Navigate extends Component {
         </div>)
     }
 
+    navTheme(){
+        return this.props.loggedIn ?
+            "navbar navbar-expand-lg navbar-dark bg-primary w-100" :
+            "navbar navbar-expand-lg navbar-light bg-light";
+    }
+
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark w-100">
+            <nav className={this.navTheme()}>
                 <a className="navbar-brand" href="#">
                     Your Profile
                 </a>
