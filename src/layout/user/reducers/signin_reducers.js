@@ -46,7 +46,7 @@ export function signinReducer(state = initState, action) {
                     loggedIn: false,
                     username: "",
                     error: false,
-                    message: "Logged Out!"
+                    message: action.data.message
                 }
             });
             console.log("sign out", "state", signoutState);

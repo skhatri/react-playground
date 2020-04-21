@@ -1,5 +1,6 @@
 import signinService from "../services/signin.service";
 import {Events} from "../model";
+
 const {SignIn} = Events;
 
 export function updateUsername(value) {
@@ -39,10 +40,14 @@ export function performLogin(username, password) {
 }
 
 
-export function performLogout() {
+export function performLogout(message) {
+    if (message === undefined) {
+        message = "Logged Off!!!";
+    }
     return {
         type: SignIn.Logout,
         data: {
+            message: message
         },
     };
 }

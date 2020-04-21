@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 export class SignOut extends Component {
 
     componentDidMount() {
-        this.props.performLogout();
+        this.props.performLogout(this.props.message);
         this.props.history.push("/signin");
     }
 
@@ -21,9 +21,11 @@ export class SignOut extends Component {
 SignOut.propTypes = {
     performLogout: PropTypes.func.isRequired
 };
+
 const mapStateToProps = (state) => {
     return {};
 };
+
 const mapDispatchToProps = {
     performLogout
 };

@@ -32,20 +32,17 @@ export class ChangePassword extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.changed !== undefined && this.props.changed === true) {
-            this.props.history.push("/");
+            this.props.history.push("/signout-on-change");
         }
-
     }
 
     componentDidMount() {
-        console.log("change pw logged in state", this.props.isLogged);
-        console.log("change pw access token", this.props.accessToken);
     }
 
     changePasswordForm() {
         return (
             <div>
-                <span className={this.messageStyleName()}>{this.props.message}</span>
+                {this.props.error? (<span className={this.messageStyleName()}>{this.props.message}</span>): (<span/>)}
                 <form className="form-changepw">
                     <img className="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg"
                          alt=""

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SignOut from "./components/SignOut";
 
-export class SignOutFragment extends Component {
+export class SignOutOnChange extends Component {
 
     render() {
         return (
@@ -9,7 +9,7 @@ export class SignOutFragment extends Component {
                 <div>&nbsp;</div>
                 <div className="row w-100">
                     <div className="col-sm-4">
-                        <SignOut message="You have logged off successfully."/>
+                        <SignOut message="You have successfully changed your password. Please login to continue."/>
                     </div>
 
                 </div>

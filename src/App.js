@@ -11,6 +11,7 @@ import {ChangePasswordFragment as ChangePasswordLayout} from "./layout/user/Chan
 
 import store from "./app/stores";
 import { Provider } from "react-redux";
+import {SignOutOnChange} from "./layout/user/SignOutOnChange";
 
 
 class App extends React.Component {
@@ -31,6 +32,9 @@ class App extends React.Component {
             </Route>
             <Route exact path="/signout">
               <SignOutLayout/>
+            </Route>
+            <Route exact path="/signout-on-change">
+              <SignOutOnChange/>
             </Route>
             <Route exact path="/changepw">
               <ChangePasswordLayout/>
