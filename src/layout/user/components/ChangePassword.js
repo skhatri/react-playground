@@ -42,11 +42,8 @@ export class ChangePassword extends Component {
     changePasswordForm() {
         return (
             <div>
-                {this.props.error? (<span className={this.messageStyleName()}>{this.props.message}</span>): (<span/>)}
                 <form className="form-changepw">
-                    <img className="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg"
-                         alt=""
-                         width="72" height="72"/>
+                    {this.props.error? (<div className={this.messageStyleName()}>{this.props.message}</div>): (<div/>)}
                     <h1 className="h3 mb-3 font-weight-normal">{this.props.title}</h1>
                     <label htmlFor="inputOldPassword" className="sr-only">Old Password</label>
                     <input type="text" id="inputOldPassword" className="form-control" placeholder="Old Password" required=""

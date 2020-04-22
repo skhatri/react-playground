@@ -1,0 +1,6 @@
+- View Profile
+- Edit Profile
+- Forgot Password
+- Reset Password
+- Sign Up
+- Deploy
