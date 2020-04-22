@@ -14,7 +14,7 @@ const initState = {
 
 export function signinReducer(state = initState, action) {
     switch (action.type) {
-        case SignIn.ResultFullFilled:
+        case SignIn.ResultFulFilled:
             console.log("SignIn Result", action.data);
             let loginState = Object.assign({}, state)
             loginState.input.password = "";

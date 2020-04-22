@@ -27,7 +27,7 @@ export function performLogin(username, password) {
         signinService.performLogin(username, password)
             .then(data => {
                 dispatch({
-                    type: SignIn.ResultFullFilled,
+                    type: SignIn.ResultFulFilled,
                     data: data
                 });
             }).catch(err => {

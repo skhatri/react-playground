@@ -6,6 +6,9 @@ export class Navigate extends Component {
 
     loggedInMenu() {
         return (<div className="navbar-nav">
+            <Link to="/profile" className="nav-item nav-link">
+                <span className="nav-item nav-link">Profile</span>
+            </Link>
             <Link to="/todo" className="nav-item nav-link">
                 <span className="nav-item nav-link">TODO</span>
             </Link>

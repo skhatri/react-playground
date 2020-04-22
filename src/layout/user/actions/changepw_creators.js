@@ -36,7 +36,7 @@ export function performChangePassword(oldPassword, newPassword, confirmNewPasswo
         changePasswordService.performChangePassword(oldPassword, newPassword, confirmNewPassword)
             .then(data => {
                 dispatch({
-                    type: ChangePassword.ResultFullFilled,
+                    type: ChangePassword.ResultFulFilled,
                     data: data
                 });
             }).catch(err => {

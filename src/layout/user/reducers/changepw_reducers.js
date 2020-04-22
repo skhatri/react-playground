@@ -29,7 +29,7 @@ export function changePasswordReducer(state = initState, action) {
             let confirmPwState = Object.assign({}, state);
             confirmPwState.input.confirmNewPassword = action.data.confirmNewPassword
             return confirmPwState;
-        case ChangePassword.ResultFullFilled:
+        case ChangePassword.ResultFulFilled:
             return Object.assign({}, state, {
                 output: action.data
             });
