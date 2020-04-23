@@ -1,7 +1,6 @@
 import Axios from "axios";
 import {AuthToken} from "./auth"
-
-const base = "http://localhost:4040"
+import {ServiceUrls} from "./uri"
 
 export function authenticatedGet(uri, cb) {
     return authenticatedCall(uri, null, cb, "GET")
@@ -19,11 +18,12 @@ export function authenticatedCall(uri, payload, cb, method = "POST") {
         "Accept": "application/json",
         "Authorization": `Bearer ${accessToken}`
     };
+    const url = `${ServiceUrls.ProfileApp}${uri}`;
 
     if (method === "POST") {
-        promise = Axios.post(`${base}${uri}`, JSON.stringify(payload), {headers: headers});
+        promise = Axios.post(url, JSON.stringify(payload), {headers: headers});
     } else {
-        promise = Axios.get(`${base}${uri}`, {headers: headers});
+        promise = Axios.get(url, {headers: headers});
     }
 
     promise.then((responseData) => responseData.data).then(d => {
