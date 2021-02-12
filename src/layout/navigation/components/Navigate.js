@@ -31,6 +31,9 @@ export class Navigate extends Component {
             <Link to="/" className="nav-item nav-link">
                 <span className="nav-item nav-link">Calculator</span>
             </Link>
+            <Link to="/todo" className="nav-item nav-link">
+                <span className="nav-item nav-link">TODO</span>
+            </Link>
             <Link to="/register" className="nav-item nav-link">
                 <span className="nav-item nav-link">Register</span>
             </Link>
